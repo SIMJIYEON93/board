@@ -36,6 +36,11 @@ public class BoardService {
         return boardRepository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
     }
 
+    public List<BoardResponseDto> getBoardsByKeyword (String keyword) {
+        return boardRepository.findAllByContentsContainsOrderByModifiedAtDesc(keyword).stream().map(BoardResponseDto::new).toList();
+    }
+
+
     @Transactional
     public Long updateBoard(Long id, BoardRequestDto requestDto) {
         // 해당 메모가 DB에 존재하는지 확인

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Board Service</title>
+  <title>Board</title>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
@@ -323,7 +323,7 @@
       // 4. 전달할 data JSON으로 만듭니다.
       let data = {'username': username, 'contents': contents};
 
-      // 5. POST /api/memos 에 data를 전달합니다.
+      // 5. POST /api/boards 에 data를 전달합니다.
       $.ajax({
         type: "POST",
         url: "/api/boards",

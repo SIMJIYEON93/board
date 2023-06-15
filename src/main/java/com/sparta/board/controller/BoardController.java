@@ -27,6 +27,11 @@ public class BoardController {
         return boardService.getBoards();
     }
 
+    @GetMapping("/boards/contents")
+    public List<BoardResponseDto> getBoardsByKeyword(String keyword) {
+        return boardService.getBoardsByKeyword(keyword);
+    }
+
     @PutMapping("/boards/{id}")
     public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
         return boardService.updateBoard(id, requestDto);
