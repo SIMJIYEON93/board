@@ -1,9 +1,9 @@
 package com.sparta.board.service;
 
-import com.sparta.memo.dto.MemoRequestDto;
-import com.sparta.memo.dto.MemoResponseDto;
-import com.sparta.memo.entity.Memo;
-import com.sparta.memo.repository.MemoRepository;
+import com.sparta.board.dto.BoardRequestDto;
+import com.sparta.board.dto.BoardResponseDto;
+import com.sparta.board.entity.Board;
+import com.sparta.board.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,54 +12,54 @@ import java.util.List;
 @Service
 public class BoardService {
 
-    private final MemoRepository memoRepository;
+    private final BoardRepository boardRepository;
 
-    public BoardService(MemoRepository memoRepository) {
-        this.memoRepository = memoRepository;
+    public BoardService(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
     }
 
-    public MemoResponseDto createMemo(MemoRequestDto requestDto) {
+    public BoardResponseDto createBoard(BoardRequestDto requestDto) {
         // RequestDto -> Entity
-        Memo memo = new Memo(requestDto);
+        Board board = new Board(requestDto);
 
         // DB 저장
-        Memo saveMemo = memoRepository.save(memo);
+        Board saveBoard = boardRepository.save(board);
 
         // Entity -> ResponseDto
-        MemoResponseDto memoResponseDto = new MemoResponseDto(saveMemo);
+        BoardResponseDto boardResponseDto = new BoardResponseDto(saveBoard);
 
-        return memoResponseDto;
+        return boardResponseDto;
     }
 
-    public List<MemoResponseDto> getMemos() {
+    public List<BoardResponseDto> getBoards() {
         // DB 조회
-        return memoRepository.findAllByOrderByModifiedAtDesc().stream().map(MemoResponseDto::new).toList();
+        return boardRepository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
     }
 
     @Transactional
-    public Long updateMemo(Long id, MemoRequestDto requestDto) {
+    public Long updateBoard(Long id, BoardRequestDto requestDto) {
         // 해당 메모가 DB에 존재하는지 확인
-        Memo memo = findMemo(id);
+        Board board = findBoard(id);
 
         // memo 내용 수정
-        memo.update(requestDto);
+        board.update(requestDto);
 
         return id;
     }
 
-    public Long deleteMemo(Long id) {
+    public Long deleteBoard(Long id) {
         // 해당 메모가 DB에 존재하는지 확인
-        Memo memo = findMemo(id);
+        Board board = findBoard(id);
 
         // memo 삭제
         // memo 삭제
-        memoRepository.delete(memo);
+        boardRepository.delete(board);
 
         return id;
     }
 
-    private Memo findMemo(Long id) {
-        return memoRepository.findById(id).orElseThrow(() ->
+    private Board findBoard(Long id) {
+        return boardRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("선택한 메모는 존재하지 않습니다.")
         );
     }

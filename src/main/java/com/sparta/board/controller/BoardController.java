@@ -1,40 +1,39 @@
-package com.sparta.memo.controller;
+package com.sparta.board.controller;
 
-import com.sparta.memo.dto.MemoRequestDto;
-import com.sparta.memo.dto.MemoResponseDto;
-import com.sparta.memo.service.MemoService;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.sparta.board.dto.BoardRequestDto;
+import com.sparta.board.dto.BoardResponseDto;
+import com.sparta.board.service.BoardService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class MemoController {
+public class BoardController {
 
-    private final MemoService memoService;
+    private final BoardService boardService;
 
-    public MemoController(MemoService memoService) {
-        this.memoService = memoService;
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
     }
 
-    @PostMapping("/memos")
-    public MemoResponseDto createMemo(@RequestBody MemoRequestDto requestDto) {
-        return memoService.createMemo(requestDto);
+    @PostMapping("/boards")
+    public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto) {
+        return boardService.createBoard(requestDto);
     }
 
-    @GetMapping("/memos")
-    public List<MemoResponseDto> getMemos() {
-        return memoService.getMemos();
+    @GetMapping("/boards")
+    public List<BoardResponseDto> getBoards() {
+        return boardService.getBoards();
     }
 
-    @PutMapping("/memos/{id}")
-    public Long updateMemo(@PathVariable Long id, @RequestBody MemoRequestDto requestDto) {
-        return memoService.updateMemo(id, requestDto);
+    @PutMapping("/boards/{id}")
+    public Long updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
+        return boardService.updateBoard(id, requestDto);
     }
 
-    @DeleteMapping("/memos/{id}")
-    public Long deleteMemo(@PathVariable Long id) {
-        return memoService.deleteMemo(id);
+    @DeleteMapping("/boards/{id}")
+    public Long deleteBoard(@PathVariable Long id) {
+        return boardService.deleteBoard(id);
     }
 }

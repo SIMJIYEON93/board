@@ -1,12 +1,12 @@
 package com.sparta.board.dto;
 
-import com.sparta.memo.entity.Memo;
+import com.sparta.board.entity.Board;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class MemoResponseDto {
+public class BoardResponseDto {
     private Long id;
     private String username;
     private String contents;
@@ -14,11 +14,11 @@ public class MemoResponseDto {
     private LocalDateTime modifiedAt;
 
 
-    public MemoResponseDto(Memo memo) {
-        this.id = memo.getId();
-        this.username = memo.getUsername();
-        this.contents = memo.getContents();
-        this.createdAt=memo.getCreatedAt();
-        this.modifiedAt= memo.getModifiedAt();
+    public BoardResponseDto(Board board) {
+        this.id = board.getId();
+        this.username = board.getUsername();
+        this.contents = board.getContents();
+        this.createdAt=board.getCreatedAt();
+        this.modifiedAt= board.getModifiedAt();
     }
 }

@@ -1,6 +1,6 @@
 package com.sparta.board.entity;
 
-import com.sparta.memo.dto.MemoRequestDto;
+import com.sparta.board.dto.BoardRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,9 +9,9 @@ import lombok.Setter;
 @Entity // JPA가 관리할 수 있는 Entity 클래스 지정
 @Getter
 @Setter //조심히 사용
-@Table(name = "spartaboard") // 매핑할 테이블의 이름을 지정
+@Table(name = "board") // 매핑할 테이블의 이름을 지정
 @NoArgsConstructor //기본생성자 생성
-public class Memo extends Timestamped {
+public class Board extends Timestamped {
     @Id // 식별자
     @GeneratedValue(strategy = GenerationType.IDENTITY) //auto increment
     private Long id;
@@ -21,12 +21,12 @@ public class Memo extends Timestamped {
     private String contents;
 
 
-    public Memo(MemoRequestDto requestDto) {
+    public Board(BoardRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
     }
 
-    public void update(MemoRequestDto requestDto) {
+    public void update(BoardRequestDto requestDto) {
         this.username = requestDto.getUsername();
         this.contents = requestDto.getContents();
     }
