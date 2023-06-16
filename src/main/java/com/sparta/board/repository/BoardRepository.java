@@ -9,7 +9,7 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findAllByOrderByModifiedAtDesc();
 
-    List<Board> findAllByContentsContainsOrderByModifiedAtDesc(String keyword);
+    List<Board> findAllByContentsContainsOrderByModifiedAtDesc(String username);
 
     //List<Board> findAllByUsername(String password);
 }

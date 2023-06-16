@@ -28,8 +28,8 @@ public class BoardController {
     }
 
     @GetMapping("/boards/contents")
-    public List<BoardResponseDto> getBoardsByKeyword(String keyword) {
-        return boardService.getBoardsByKeyword(keyword);
+    public List<BoardResponseDto> getBoardsByKeyword(String username) {
+        return boardService.getBoardsByUsername(username);
     }
 
     @PutMapping("/boards/{id}")

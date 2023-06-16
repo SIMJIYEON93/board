@@ -17,12 +17,18 @@ public class Board extends Timestamped {
     private Long id;
     @Column(name = "username", nullable = false) //null값을 허용하지 않음(기본값 true)
     private String username;
+    @Column(name = "password", nullable = false) //null값을 허용하지 않음(기본값 true)
+    private String password;
+    @Column(name = "contentname", nullable = false) //null값을 허용하지 않음(기본값 true)
+    private String contentname;
     @Column(name = "contents", nullable = false, length = 500)
     private String contents;
 
 
     public Board(BoardRequestDto requestDto) {
         this.username = requestDto.getUsername();
+        this.password = requestDto.getPassword();
+        this.contentname = requestDto.getContentname();
         this.contents = requestDto.getContents();
     }
 

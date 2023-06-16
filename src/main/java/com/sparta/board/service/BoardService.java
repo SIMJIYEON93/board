@@ -36,8 +36,8 @@ public class BoardService {
         return boardRepository.findAllByOrderByModifiedAtDesc().stream().map(BoardResponseDto::new).toList();
     }
 
-    public List<BoardResponseDto> getBoardsByKeyword (String keyword) {
-        return boardRepository.findAllByContentsContainsOrderByModifiedAtDesc(keyword).stream().map(BoardResponseDto::new).toList();
+    public List<BoardResponseDto> getBoardsByUsername (String username) {
+        return boardRepository.findAllByContentsContainsOrderByModifiedAtDesc(username).stream().map(BoardResponseDto::new).toList();
     }
 
 
@@ -68,4 +68,6 @@ public class BoardService {
                 new IllegalArgumentException("선택한 메모는 존재하지 않습니다.")
         );
     }
+
+
 }
